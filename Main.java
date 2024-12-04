@@ -42,9 +42,11 @@ public class Main {
                PetShop shop1 = new PetShop(shopName);
 
                // actually start pet simulator
-               while(!Game.isBankrupted()) {
-                    System.out.println("It is day " + Game.getDay());
-                    System.out.println("Your current balance is " + Game.getBalance());
+               while(!game.isBankrupted()) {
+                    // day starts
+                    System.out.println("It is day " + game.getDay());
+                    System.out.println("Your current balance is " + game.getBalance());
+                    // first occurrence of a stray
                     Animal stray = new Animal();
                     System.out.println("Oh look! There's a stray! " + stray.toString());
                     System.out.println("Would you like to adopt it? (y/n)");
@@ -55,10 +57,10 @@ public class Main {
                          if (reply.equalsIgnoreCase("y")) {
                               System.out.println("How much would you like to increase capacity? It costs $50 to accommodate another animal. Please enter an integer.");
                               int num = input.nextInt();
-                                   if (Game.getBalance() > PetShop.increaseCapacityCost(num)) {
+                                   if (game.getBalance() > PetShop.increaseCapacityCost(num)) {
                                         PetShop.increaseCapacity();
                                    }
-                                   else if (Game.getBalance() < PetShop.increaseCapacityCost(num)) {
+                                   else if (game.getBalance() < PetShop.increaseCapacityCost(num)) {
                                         System.out.println("You do not have enough money")
                                    }
                          }
@@ -67,12 +69,53 @@ public class Main {
 
 
                     if (answer.equalsIgnoreCase("y")){
-                         System.out.println("Nice! You now have " + Animal.getNumPets());
+                         System.out.println("Nice! You now have " + Animal.getNumPets() + " pets!");
                     }
-                    
+
+                    // end of day sequence
+                    System.out.println("Congratulations! You've made it to the end of Day " + game.getDay() + ".");
+                    System.out.println("How many days forward would you like to move forward by? Enter a negative number ot end the game.");
+                    int num = input.nextInt();
+                    game.moveForward(num);
+
                }
+
+               if (game.isBankrupted()) {
+                    System.out.println("");
+                    System.out.println("");
+                    System.out.println("");
+                    System.out.println("~~~~~~~~~~~~~~~~~~ BREAKING NEWS ~~~~~~~~~~~~~~~~~~");
+                    System.out.println(game.getName() + "'s " + shop1.getName() + " was open for " + game.getDay() + " days.");
+                    System.out.println(shop1.getName() + " helped " + Animal.getPetsAdopted() + " pets get adopted!");
+                    System.out.println("Unfortunately " + shop1.getName() + " recently went bankrupt and has shut down.");
+                    System.out.println("What new adventures await " + game.getName() + "?");
+                    System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+                    System.out.println("");
+                    System.out.println("");
+                    System.out.println("");
+
+               }
+               else {
+                    System.out.println("");
+                    System.out.println("");
+                    System.out.println("");
+                    System.out.println("~~~~~~~~~~~~~~~~~~ BREAKING NEWS ~~~~~~~~~~~~~~~~~~");
+                    System.out.println(game.getName() + "'s " + shop1.getName() + " has been open for " + game.getDay() + " days and have raised $" + game.getBalance() + "!");
+                    System.out.println("So far, " + shop1.getName() + " has helped " + Animal.getPetsAdopted() + " pets get adopted!");
+                    System.out.println("They still have " + Animal.getNumPets() + " adorable pets waiting to be taken to a loving home.");
+                    System.out.println("Thank you " + game.getName() + "!" + " We are all wondering what you'll do next!");
+                    System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+                    System.out.println("");
+                    System.out.println("");
+                    System.out.println("");
+
+               }
+
+               System.out.println("Thanks for playing Pet Shop Simulator. Have a wonderful day!");
+
           }
 
+          // end simulator
           System.out.println("Have a wonderful day!");
 
      }

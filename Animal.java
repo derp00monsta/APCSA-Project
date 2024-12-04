@@ -10,6 +10,7 @@ public class Animal {
     private PetShop shop;
     private String name;
     private static int numPets = 0;
+    private static int petsAdopted = 0;
 
     /**
      * Creates a new animal with random attributes
@@ -27,7 +28,6 @@ public class Animal {
         health = chooseHealth();
         color = chooseColor();
         this.shop = shop;
-        numPets++;
                 
     }
 
@@ -46,7 +46,6 @@ public class Animal {
         health = chooseHealth();
         color = chooseColor();
         shop = null;
-        numPets++;
     
     }
     
@@ -80,6 +79,7 @@ public class Animal {
                 return "turtle!";
                 break;
         }
+
     }
 
     /**
@@ -89,8 +89,9 @@ public class Animal {
     */
     private int chooseAge() {
         int randomAge = (int) (Math.random() * (15) + 1);
-            return randomAge;
-        }
+        return randomAge;
+        
+    }
     
     /**
      * Chooses a random weight of the animal in kg
@@ -116,6 +117,7 @@ public class Animal {
                 return 1.0;
                 break;
         }
+
     }
 
     // /**
@@ -175,6 +177,7 @@ public class Animal {
                 break;
                 
         }
+
     }
 
     /**
@@ -184,6 +187,7 @@ public class Animal {
     */
     public double getWeight() {
         return weight;
+
     }
 
     /**
@@ -193,6 +197,7 @@ public class Animal {
     */
     public String getType() {
         return type;
+
     }
 
     /**
@@ -202,6 +207,7 @@ public class Animal {
     */
     public int getAge() {
         return age;
+
     }
 
     /**
@@ -211,6 +217,7 @@ public class Animal {
     */
     public double getColor() {
         return color;
+
     }
 
     /**
@@ -220,6 +227,7 @@ public class Animal {
     */
     public String getName() {
         return name;
+
     }
 
     /**
@@ -229,6 +237,27 @@ public class Animal {
     */
     public PetShop getShop() {
         return shop;
+
+    }
+
+    /**
+     * Gets how many pets there are
+     * 
+     * @return numPets
+     */
+    public static int getNumPets() {
+        return numPets;
+
+    }
+
+    /**
+     * Gets how many pets have been adopted
+     * 
+     * @return petAdopted
+     */
+    public static int getPetsAdopted() {
+        return petsAdopted
+
     }
 
     /**
@@ -238,6 +267,7 @@ public class Animal {
     */
     public void setName(String name) {
         this.name = name;
+
     }
 
     /**
@@ -247,6 +277,7 @@ public class Animal {
     */
     public void transferTo(PetShop shop) {
         this.shop = shop;
+        numPets++;
 
     }
 
@@ -260,11 +291,22 @@ public class Animal {
     }
 
     /**
+     * Simulates a pet adoption by decreasing how many pets there are and increasing how many have been adopted
+     * 
+     */
+    public static void adopt() {
+        numPets--;
+        petsAdopted++;
+
+    }
+
+    /**
      * String representation of the Animal
      * 
      * @return string description of animal
      */
     public String toString() {
         return name + " is a " + color + " " + type + " that is " + age + " years old " + " and weighs " + weight + " kilograms."
+
     }
 }

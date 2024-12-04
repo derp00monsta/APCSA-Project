@@ -28,6 +28,7 @@ public class Game {
         else {
             return false;
         }
+
     }
 
     /**
@@ -36,6 +37,8 @@ public class Game {
      */
     public void moveForward() {
         day++;
+        System.out.println("Moving forward by 1 day");
+
     }
 
     /**
@@ -45,6 +48,8 @@ public class Game {
      */
     public void moveForward(int days) {
         day += days;
+        System.out.println("Moving forward by" + days + "day");
+
     }
 
     /**
@@ -54,6 +59,7 @@ public class Game {
      */
     public int getDay() {
         return day;
+
     }
 
     /**
@@ -63,6 +69,17 @@ public class Game {
      */
     public int getBalance() {
         return balance;
+
+    }
+
+    /**
+     * Returns the players name
+     * 
+     * @return name
+     */
+    public String getName() {
+        return name;
+
     }
 
 }
