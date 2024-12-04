@@ -47,4 +47,22 @@ public class Game {
         day += days;
     }
 
+    /**
+     * Returns the day in the simulator
+     * 
+     * @return day
+     */
+    public int getDay() {
+        return day;
+    }
+
+    /**
+     * Returns the how much money the user has
+     * 
+     * @return balance
+     */
+    public int getBalance() {
+        return balance;
+    }
+
 }

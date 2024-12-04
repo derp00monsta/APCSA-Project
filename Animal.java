@@ -26,7 +26,7 @@ public class Animal {
         hunger = chooseHunger();
         health = chooseHealth();
         color = chooseColor();
-        shop = null;
+        this.shop = shop;
         numPets++;
                 
     }
@@ -37,7 +37,7 @@ public class Animal {
      * @param name
      * @param shop
      */
-    public Animal(String name, PetShop shop) {
+    public Animal(String name) {
         this.type = chooseType();
         this.name = name;
         weight = chooseWeight();
@@ -47,7 +47,7 @@ public class Animal {
         color = chooseColor();
         shop = null;
         numPets++;
-                
+    
     }
     
     /**
@@ -247,5 +247,24 @@ public class Animal {
     */
     public void transferTo(PetShop shop) {
         this.shop = shop;
+
+    }
+
+    /**
+    * Closes the animal object and removes it from memory
+    * 
+    */
+    public void close() {
+        this = null;
+
+    }
+
+    /**
+     * String representation of the Animal
+     * 
+     * @return string description of animal
+     */
+    public String toString() {
+        return name + " is a " + color + " " + type + " that is " + age + " years old " + " and weighs " + weight + " kilograms."
     }
 }
