@@ -1,28 +1,15 @@
 public class Game {
-    private double balance;
-    private String name;
-    private int day;
-
-    /**
-     * Creates a new game
-     * 
-     * @param balance double amount of how much money the player has
-     * @param name name of the player
-     */
-    public Game(double balance, String name) {
-        this.balance = balance;
-        this.name = name;
-        day = 0;
-
-    }
+    private static double balance;
+    private static String name;
+    private static int day;
 
     /**
      * Checks if the player is bankrupt. The player is bankrupt if their balance is 0
      * 
      * @return returns true if balance is 0
      */
-    public boolean isBankrupt() {
-        if (balance =< 0) {
+    public static boolean isBankrupt() {
+        if (balance <= 0) {
             return true;
         }
         else {
@@ -35,7 +22,7 @@ public class Game {
      * Moves forward in time by one day
      * 
      */
-    public void moveForward() {
+    public static void moveForward() {
         day++;
         System.out.println("Moving forward by 1 day");
 
@@ -46,7 +33,7 @@ public class Game {
      * 
      * @param days how many days the game moves forward by
      */
-    public void moveForward(int days) {
+    public static void moveForward(int days) {
         day += days;
         System.out.println("Moving forward by" + days + "day");
 
@@ -57,7 +44,7 @@ public class Game {
      * 
      * @return day
      */
-    public int getDay() {
+    public static int getDay() {
         return day;
 
     }
@@ -67,8 +54,18 @@ public class Game {
      * 
      * @return balance
      */
-    public int getBalance() {
+    public static double getBalance() {
         return balance;
+
+    }
+
+    /**
+     * Adds
+     * 
+     * @param money
+     */
+    public static void addToBalance(double money) {
+        balance += money;
 
     }
 
@@ -77,8 +74,28 @@ public class Game {
      * 
      * @return name
      */
-    public String getName() {
+    public static String getName() {
         return name;
+
+    }
+
+    /**
+     * sets the player's balance
+     * 
+     * @param newBalance
+     */
+    public static void setBalance(double newBalance) {
+        balance = newBalance;
+
+    }
+
+    /**
+     * sets the player's name
+     * 
+     * @param newName
+     */
+    public static void setName(String newName) {
+        name = newName;
 
     }
 

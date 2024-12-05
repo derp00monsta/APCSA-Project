@@ -5,6 +5,7 @@ In this __Pet Shop Simulator__, you are an entrepreneur that wants to create a n
 
 You can play by interacting with the terminal to make decisions for your pet shop.
 
+### :P Felis catus
 ```
 ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⡀
 ⠀⠀⠀⠀⢀⡴⣆⠀⠀⠀⠀⠀⣠⡀⠀⠀⠀⠀⠀⠀⣼⣿⡗
