@@ -44,46 +44,136 @@ public class Main {
 
                // actually start pet simulator
                while(!Game.isBankrupt()) {
-                    // day starts
-                    System.out.println("It is day " + Game.getDay());
-                    System.out.println("Your current balance is " + Game.getBalance());
-                    // first occurrence of a stray
-                    Animal stray = new Animal();
-                    System.out.println("Oh look! There's a stray! " + stray.toString());
-                    System.out.println("Would you like to adopt it? (y/n)");
-                    String reply = input.nextLine();
-                    if (reply.equalsIgnoreCase("y") && (Animal.getNumPets() >= PetShop.getCapacity())) {
-                         System.out.println("You have already reached capacity! Would you like to increase capacity? (y/n)");
-                         reply = input.nextLine();
-                         if (reply.equalsIgnoreCase("y")) {
-                              System.out.println("How much would you like to increase capacity? It costs $50 to accommodate another animal. Please enter an integer.");
+                    for (int i = 0; i < 3; i++) {
+                         // day starts
+                         System.out.println("It is day " + Game.getDay());
+                         System.out.println("Your current balance is " + Game.getBalance());
+                         // first occurrence of a stray
+                              PetShop shop = new PetShop();
+                         Animal stray = new Animal();
+                         System.out.println("Oh look! There's a stray! " + stray.toString());
+                         System.out.println("Would you like to adopt it? (y/n)");
+                         String reply = input.nextLine();
+                         if (reply.equalsIgnoreCase("y") && (Animal.getNumPets() >= PetShop.getCapacity())) {
+                              System.out.println("You have already reached capacity! Would you like to increase capacity? (y/n)");
+                              reply = input.nextLine();
+                              if (reply.equalsIgnoreCase("y")) {
+                                   System.out.println("How much would you like to increase capacity? It costs $50 to accommodate another animal. Please enter an integer.");
+                                   int num = input.nextInt();
+                                        if (Game.getBalance() > PetShop.increaseCapacityCost(num)) {
+                                             PetShop.increaseCapacity(num);
+                                             System.out.println(PetShop.getName() + " can now fit " + PetShop.getCapacity() + " pets!");
+                                        }
+                                        else if (Game.getBalance() < PetShop.increaseCapacityCost(num)) {
+                                             System.out.println("You do not have enough money");
+                                        }
+                              }
+                         }
+                         else if (reply.equalsIgnoreCase("y")) {
+                              System.out.println("Nice! You know have " + Animal.getNumPets() + " pets!");
+                              stray.transferTo(shop);
+                         }
+                         else if (reply.equalsIgnoreCase("n")) {
+                              System.out.println("Aight...");
+                         }
+                         stray = null;
+
+                         while (true) {
+                              Game.menu();
                               int num = input.nextInt();
+                              if (num == 1) {
+                                   Animal.addPet();
+                                   Game.addToBalance(-30);
+                                   System.out.println(PetShop.getName() + " now has " + Animal.getNumPets() + " pets!");
+                                   System.out.println("Do you wish to return to the menu? (y/n)");
+                                   reply = input.nextLine();
+                                   if (reply.equalsIgnoreCase("n")) {
+                                        break;
+                                   }
+
+                              }
+                              else if (num == 2) {
+                                   System.out.println("How much would you like to increase capacity? It costs $50 to accommodate another animal. Please enter an integer.");
+                                   num = input.nextInt();
                                    if (Game.getBalance() > PetShop.increaseCapacityCost(num)) {
                                         PetShop.increaseCapacity(num);
+                                        System.out.println(PetShop.getName() + " can now fit " + PetShop.getCapacity() + " pets!");
+
                                    }
                                    else if (Game.getBalance() < PetShop.increaseCapacityCost(num)) {
                                         System.out.println("You do not have enough money");
+
                                    }
+                                   System.out.println("Do you wish to return to the menu? (y/n)");
+                                   reply = input.nextLine();
+                                   if (reply.equalsIgnoreCase("n")) {
+                                        break;
+                                   }
+
+                              }
+                              else if (num == 3) {
+                                   if (Animal.getAdoptionRate() >= 100) {
+                                        System.out.println("Can not increase adoption rate more than 80%");
+
+                                   }
+                                   else if (Game.getBalance() > 80) {
+                                        Animal.increaseRate();
+                                        System.out.println(PetShop.getName() + "'s' adoption rate is now " + Animal.getAdoptionRate() + "%!");
+
+                                   }
+                                   else if (Game.getBalance() < PetShop.increaseCapacityCost(num)) {
+                                        System.out.println("You do not have enough money");
+
+                                   }
+                                   System.out.println("Do you wish to return to the menu? (y/n)");
+                                   reply = input.nextLine();
+                                   if (reply.equalsIgnoreCase("n")) {
+                                        break;
+                                   }
+
+                              }
+                              else if (num == 4) {
+                                   System.out.println();
+                                   System.out.println("It is has been " + Game.getDay() + " day's since " + PetShop.getName() + " has opened.");
+                                   System.out.println("Every month you spend " + Game.calculateBills() + " per month on animal food, grooming, medication, bills, and staffing.");
+                                   System.out.println("You currently have $" + Game.getBalance() + " and shelter " + Animal.getNumPets() + " pets.");
+                                   System.out.println("You have helped " + Animal.getPetsAdopted() + " pets get adopted and " + PetShop.getName() + "'s adoption rate is " + Animal.getAdoptionRate() + "%!");
+                                   System.out.println();
+                                   System.out.println("Do you wish to return to the menu? (y/n)");
+                                   reply = input.nextLine();
+                                   if (reply.equalsIgnoreCase("n")) {
+                                        break;
+                                   }
+
+                              }
+                              else if (num == 5) {
+                                   Game.workerTalks();
+                                   System.out.println("What do you want to say?");
+                                   System.out.print(Game.getName() + ": ");
+                                   input.nextLine();
+                                   input.nextLine();
+                                   System.out.println("Worker: Meh");
+                                   System.out.println("Do you wish to return to the menu? (y/n)");
+                                   reply = input.nextLine();
+                                   if (reply.equalsIgnoreCase("n")) {
+                                        break;
+                                   }
+                              }
                          }
-                    }
-                    stray = null;
-
-
-                    if (answer.equalsIgnoreCase("y")){
-                         System.out.println("Nice! You now have " + Animal.getNumPets() + " pets!");
                     }
 
                     // end of day sequence
                     System.out.println("Congratulations! You've made it to the end of Day " + Game.getDay() + ".");
-                    System.out.println("How many days forward would you like to move forward by? Enter 0 to end the game.");
-                    int num = input.nextInt();
-                    if (num > 0) {
-                         break;
-                    }
-                    else {
-                         Game.moveForward(num);
-                    }
-
+                    // System.out.println("How many days forward would you like to move forward by? Enter 0 to end the game.");
+                    // int num = input.nextInt();
+                    // if (num > 0) {
+                    //      break;
+                    // }
+                    // else {
+                    //      Game.moveForward(num);
+                    // }
+                    Game.moveForward();
+                    Game.payBills();
                }
 
                if (Game.isBankrupt()) {
@@ -110,7 +200,7 @@ public class Main {
                     System.out.println("So far, " + PetShop.getName() + " has helped " + Animal.getPetsAdopted() + " pets get adopted!");
                     System.out.println("They still have " + Animal.getNumPets() + " adorable pets waiting to be taken to a loving home.");
                     System.out.println("Thank you " + Game.getName() + "!" + " We are all wondering what you'll do next!");
-                    System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~Pet~~~~~~~~~~~~~~~~~~~");
+                    System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~Pet~~~~~~~~~~~~~~~~");
                     System.out.println("");
                     System.out.println("");
                     System.out.println("");
@@ -127,5 +217,3 @@ public class Main {
 
      }
 }
-
-// time class???

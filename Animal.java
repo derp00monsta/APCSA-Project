@@ -11,6 +11,7 @@ public class Animal {
     private String name;
     private static int numPets = 0;
     private static int petsAdopted = 0;
+    private static int adoptionRate = 40;
 
     /**
      * Creates a new animal with random attributes
@@ -55,7 +56,7 @@ public class Animal {
      * @param shop
      */
     public Animal() {
-        this.type = chooseType();
+        type = chooseType();
         name = chooseName();
         weight = chooseWeight();
         age = chooseAge();
@@ -72,24 +73,34 @@ public class Animal {
         switch(randoming) {
             case 1:
                 theName = "Nova";
+                break;
             case 2:
                 theName = "Lenovo";
+                break;
             case 3:
                 theName = "Tina Turner";
+                break;
             case 4:
                 theName = "Entity";
+                break;
             case 5:
                 theName = "Stella";
+                break;
             case 6:
                 theName = "Haeiza";
+                break;
             case 7:
                 theName = "Git";
+                break;
             case 8:
                 theName = "Calypso";
+                break;
             case 9:
                 theName = "Micheal Jackson";
+                break;
             case 10:
                 theName = "Mikayla";
+                break;
         }
 
         return theName;
@@ -105,25 +116,25 @@ public class Animal {
         String theType = "";
         switch(random) {
             case 1:
-                theType = "felis catus"; // cat
+                theType = "felis catus (cat)"; // cat
                 break;
             case 2:
-                theType =  "canis lupus familiaris"; // dog
+                theType =  "canis lupus familiaris (dog)"; // dog
                 break;
             case 3:
-                theType = "subphylum vertebrata"; // fish
+                theType = "subphylum vertebrata (fish)"; // fish
                 break;
             case 4:
-                theType = "oryctolagus cuniculus"; // bunny
+                theType = "oryctolagus cuniculus (bunny)"; // bunny
                 break;
             case 5:
-                theType = "sciuridae"; // squirrel
+                theType = "sciuridae (squirrel)"; // squirrel
                 break;
             case 6:
-                theType = "aves"; // bird
+                theType = "aves (bird)"; // bird
                 break;
             case 7:
-                theType = "testudines"; // turtle
+                theType = "testudines (turtle)"; // turtle
                 break;
         }
 
@@ -201,13 +212,13 @@ public class Animal {
         String color = "";
         switch(randomizer) {
             case 1:
-                color = "red bean";
+                color = "red";
                 break;
             case 2:
-                color = "orangutan";
+                color = "orange";
                 break;
             case 3:
-                color = "green bean";
+                color = "green";
                 break;
             case 4:
                 color = "yellow bellow";
@@ -216,16 +227,16 @@ public class Animal {
                 color = "bluehoo";
                 break;
             case 6:
-                color = "browntown";
+                color = "brown";
                 break;
             case 7:
-                color = "black bean";
+                color = "black";
                 break;
             case 8:
-                color = "right";
+                color = "white";
                 break;
             case 9:
-                color = "igbtqla!";
+                color = "multicolor";
                 break;
                 
         }
@@ -339,8 +350,50 @@ public class Animal {
      * 
      */
     public static void adopt() {
-        numPets--;
-        petsAdopted++;
+        int random = (int)(Math.random() * 101 + 1);
+        if (random > adoptionRate) {
+            numPets--;
+            petsAdopted++;
+            Game.addToBalance((int)(Math.random() * (64) + 1));
+        }
+
+    }
+
+    /**
+     * increases adoption rate by 5
+     * 
+     */
+    public static void increaseRate() {
+        adoptionRate += 5;
+        Game.addToBalance(-100);
+
+        }
+
+
+    /**
+     * returns the adoption rate
+     * 
+     * @return adoptionRate
+     */
+    public static int getAdoptionRate() {
+        return adoptionRate;
+    }
+
+    /**
+     * changes the value for paying for food
+     * 
+     */
+    public static void feed() {
+        Game.addToBalance(-(getNumPets() * 15));
+
+    }
+
+    /**
+    * Adds a pet to the shop
+    * 
+    */
+    public static void addPet() {
+        numPets++;
 
     }
 
@@ -349,76 +402,8 @@ public class Animal {
      * 
      * @return string description of animal
      */
-    public String toString() {
-        if (type.equals("felus caticus")) { // cat
-            System.out.println(""); 
-            System.out.println("⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⡀");
-            System.out.println("⠀⠀⠀⠀⢀⡴⣆⠀⠀⠀⠀⠀⣠⡀⠀⠀⠀⠀⠀⠀⣼⣿⡗");
-            System.out.println("⠀⠀⠀⣠⠟⠀⠘⠷⠶⠶⠶⠾⠉⢳⡄⠀⠀⠀⠀⠀⣧⣿");
-            System.out.println("⠀⠀⣰⠃⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢻⣤⣤⣤⣤⣤⣿⢿⣄");
-            System.out.println("⠀⠀⡇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣧⠀⠀⠀⠀⠀⠀⠙⣷⡴⠶⣦");
-            System.out.println("⠀⠀⢱⡀⠀⠉⠉⠀⠀⠀⠀⠛⠃⠀⢠⡟⠀⠀⠀⢀⣀⣠⣤⠿⠞⠛⠋");
-            System.out.println("⣠⠾⠋⠙⣶⣤⣤⣤⣤⣤⣀⣠⣤⣾⣿⠴⠶⠚⠋⠉⠁");
-            System.out.println("⠛⠒⠛⠉⠉⠀⠀⠀⣴⠟⢃⡴⠛⠋");
-            System.out.println("⠀⠀⠀⠀⠀⠀⠀⠀⠛⠛⠋⠁");
-            System.out.println(""); 
-        }
-        else if (type.equals("Canis lupus familiaris")) { //dog
-            System.out.println(""); 
-            System.out.println("⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣀⠤⠶⣶⣶⣶⡒⠶⣄⡀⠀⠀⠀⠀"); 
-            System.out.println("⠀⠀⠀⠀⠀⠀⠀⠀⢠⡞⠁⠀⠀⠘⡿⠛⠻⣆⠹⡏⢱⡄⠀⠀"); 
-            System.out.println("⠀⠀⠀⠀⠀⠀⢀⣠⣿⣷⣤⠀⠀⠀⠀⢠⡶⣮⠀⡇⢸⠃⠀⠀"); 
-            System.out.println("⠀⠀⠀⠀⠀⠀⡏⣄⢻⡏⠁⣀⣄⠀⠀⠘⠉⠙⢧⡇⣿⠀⠀"); 
-            System.out.println("⠀⠀⠀⠀⠀⠀⣧⢻⣄⠱⡈⣿⠟⠀⢠⣶⣶⠀⠀⢹⣾⡧⠀"); 
-            System.out.println("⠀⠀⠀⠀⠀⠀⢻⡄⠉⠙⠻⡇⡆⠀⠀⠙⢿⠴⣲⡏⠀⠀⠀⠀"); 
-            System.out.println("⠀⠀⠀⠀⠀⠀⠀⠉⠉⢙⣶⣤⡗⠒⠀⠚⠓⠊⠹⣷⠀⠀⠀⠀"); 
-            System.out.println("⠀⢀⣀⠀⠀⠀⠀⣠⡞⠉⠟⠀⠀⠀⠀⠀⠀⠀⠀⢿⡇⠀⠀⠀"); 
-            System.out.println("⣴⡷⢋⣴⠆⢀⣾⢻⡇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢹⠀⠀⠀"); 
-            System.out.println("⠈⢀⣾⠁⢠⠟⠁⠈⢿⣆⠀⠀⠀⢀⣀⠀⠀⠀⠀⢈⢻⠀⠀⠀"); 
-            System.out.println("⠀⢸⣿⢀⡟⠀⠀⠀⢸⣿⣦⠀⠀⠈⡟⠀⠀⠀⣠⡿⠀⢇⠀⠀"); 
-            System.out.println("⠀⠀⠹⣿⣧⣠⣶⣶⣿⣿⣿⠆⠀⢀⣼⡿⠟⠉⡼⠀⠠⠾⢧⡀"); 
-            System.out.println("⠀⠀⠀⠈⠻⡉⢀⠀⣄⢈⡇⠀⠛⠋⢁⢣⠀⠀⠱⣤⡀⣳⢱⣹"); 
-            System.out.println("⠀⠀⠀⠀⠀⠉⠉⠁⠉⠁⠙⠲⠤⠼⠼⠟⠀⠀⠀⠀⠉⠉⠉⠀"); 
-            System.out.println(""); 
-        }
-        else if (type.equals("subphylum vertebrata")) { //fish
-            System.out.println(""); 
-            System.out.println("⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣠⣾⣷⣄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀"); 
-            System.out.println("⠀⠀⠀⠀⠀⠀⠀⠀⠀⣀⣴⣿⣿⣿⣿⣿⣷⣀⠀⠀⠀⠀⠀⠀⠀⠀"); 
-            System.out.println("⠀⠀⠀⠀⠀⠀⠀⠀⢾⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣶⣦⡀⠀⠀⠀⠀"); 
-            System.out.println("⠈⣿⣶⣤⡀⠀⠀⠀⣸⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣧⡀⠀⠀"); 
-            System.out.println("⠀⢹⣿⣿⣿⣷⣴⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡄⠀"); 
-            System.out.println("⠀⠘⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡇⠀⢸⣿⣿⣿⡀"); 
-            System.out.println("⠀⢀⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠃"); 
-            System.out.println("⠀⢸⣿⣿⣿⣿⠿⢿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠋⠀"); 
-            System.out.println("⠀⣿⣿⠿⠋⠁⠀⠀⠉⠻⢿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡿⠟⠁⠀⠀"); 
-            System.out.println("⠈⠉⠀⠀⠀⠀⠀⠀⠀⠀⠀⣸⣿⣿⣿⣿⡿⠿⠟⠋⠉⠀⠀⠀⠀⠀"); 
-            System.out.println("⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣿⣿⠿⠟⠋⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀"); 
-            System.out.println(""); 
-        }
-        else if (type.equals("oryctolagus cuniculus")) { //bunny
-            System.out.println(""); 
-            
-            System.out.println(""); 
-        }
-        else if (type.equals("sciuridae")) { //squirrel
-            System.out.println(""); 
-
-            System.out.println(""); 
-        }
-        else if (type.equals("aves")) { //bird
-            System.out.println(""); 
-
-            System.out.println(""); 
-        }
-        else if (type.equals("testudines")) { //turtle
-            System.out.println(""); 
-
-            System.out.println(""); 
-        }
-        
-        return name + " is a " + color + " " + type + " that is " + age + " years old " + " and weighs " + weight + " kilograms.";
+    public String toString() {        
+        return name + " is a " + color + " " + type + " that is " + age + " year(s) old and weighs " + weight + " kilograms.";
 
     }
 }
-

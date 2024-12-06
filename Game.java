@@ -99,4 +99,74 @@ public class Game {
 
     }
 
+    /**
+     * prints random dialogue for a worker 
+     * 
+     */
+    public static void workerTalks() {
+        int randoming = (int) (Math.random() * (9) + 1);
+        switch(randoming) {
+            case 1:
+                System.out.println("Worker: Sup boss, when we getting paid?");
+                break;
+            case 2:
+                System.out.println("Worker: Can I go on break yet? I wanna play Brawlstars!");
+                break;
+            case 3:
+                System.out.println("Worker: Why can't I get the day off? It shouldn't matter if I got 3 days off last week!");
+                break;
+            case 4:
+                System.out.println("Worker: What do you mean?? I wasn't on BlockBlast I was working on our website!");
+                break;
+            case 5:
+                System.out.println("Worker: I said to GIVE ME A MINUTE BOSS, I'm talking to my grandma!");
+                break;
+            case 6:
+                System.out.println("Worker: Hello welcome to the best (only) pet shop in town! How may you waste my time? Oh boss, I didn't see you there, I was just um answering the phone!");
+                break;
+            case 7:
+                System.out.println("Worker: Hello World!");
+                break;
+            case 8:
+                System.out.println("Worker: *On the phone*: No sir, we don't sell gorillas, I don't care if you toured Kenya twice!");
+                break;
+            case 9:
+                System.out.println("Worker: Hey boss, I know I just started but I was wondering if I could get premoted to CEO, my dad's the CEO of Pinapple so you shouldn't have a problem with it");
+        }
+    
+    }
+
+    /**
+     * prints options
+     * 
+     */
+    public static void menu() {
+        System.out.println("What would you like to do?");
+        System.out.println("1 - Buy a new animal for $30");
+        System.out.println("2 - Increase capacity ");
+        System.out.println("3 - Spend $100 to increase the adoption rate by 5%");
+        System.out.println("4 - Check expenses and statistics");
+        System.out.println("5 - Converse with workers");
+        System.out.println("6 - Wait");
+
+    }
+    
+    /**
+     * Pays for the expenses of a month
+     */
+    public static void payBills() {
+        if (day % 30 == 0) {
+            addToBalance(calculateBills());
+        }
+    }
+
+    /**
+     * Calculates how much the monthly bill costs
+     * 
+     * @return
+     */
+    public static double calculateBills() {
+        return -(Animal.getNumPets() * 30) - 320;
+    }
+
 }

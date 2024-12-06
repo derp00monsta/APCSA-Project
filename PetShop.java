@@ -1,7 +1,7 @@
 public class PetShop {
     private static String name;
     // private int numPets;
-    private static int capacity;
+    private static int capacity = 10;
     // private static int totalPets = 0;
     // private static int numShops = 0;
 
