@@ -17,3 +17,7 @@ You can play by interacting with the terminal to make decisions for your pet sho
 ⠛⠒⠛⠉⠉⠀⠀⠀⣴⠟⢃⡴⠛⠋
 ⠀⠀⠀⠀⠀⠀⠀⠀⠛⠛⠋⠁
 ```
+ReadMe todo:
+    -How to run the project
+    -Any specific requirements or known issues
+    -Inputs / Outputs

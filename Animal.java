@@ -351,10 +351,11 @@ public class Animal {
      */
     public static void adopt() {
         int random = (int)(Math.random() * 101 + 1);
-        if (random > adoptionRate) {
+        if (random > adoptionRate && numPets > 0) {
             numPets--;
             petsAdopted++;
             Game.addToBalance((int)(Math.random() * (64) + 1));
+            PetShop.petAdopted();
         }
 
     }

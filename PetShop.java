@@ -2,6 +2,7 @@ public class PetShop {
     private static String name;
     // private int numPets;
     private static int capacity = 10;
+    private static int petsAdoptedToday = 0;
     // private static int totalPets = 0;
     // private static int numShops = 0;
 
@@ -98,6 +99,28 @@ public class PetShop {
         name = newName;
 
     }
+
+    /**
+     * increases how many pets were adopted today
+     */
+    public static void petAdopted() {
+        petsAdoptedToday++;
+    }
     
+    /**
+     * returns how many pets were adopted in one day
+     * 
+     * @return petsAdoptedToday
+     */
+    public static int petsAdoptedToday() {
+        return petsAdoptedToday;
+    }
+
+    /**
+     * sets the number of pets adopted today to zero
+     */
+    public static void resetAdoptions() {
+        petsAdoptedToday = 0;
+    }
 
 }

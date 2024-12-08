@@ -2,6 +2,7 @@ public class Game {
     private static double balance;
     private static String name;
     private static int day;
+    public static boolean play = true;
 
     /**
      * Checks if the player is bankrupt. The player is bankrupt if their balance is 0
@@ -142,6 +143,7 @@ public class Game {
      */
     public static void menu() {
         System.out.println("What would you like to do?");
+        System.out.println("0 - End the game");
         System.out.println("1 - Buy a new animal for $30");
         System.out.println("2 - Increase capacity ");
         System.out.println("3 - Spend $100 to increase the adoption rate by 5%");
@@ -167,6 +169,24 @@ public class Game {
      */
     public static double calculateBills() {
         return -(Animal.getNumPets() * 30) - 320;
+    }
+
+    /**
+     * sets the game boolean to false to end the game
+     * 
+     * @param bool
+     */
+    public static void playGame(boolean bool) {
+        play = bool;
+    }
+
+    /**
+     * returns whether or not the user wants to play 
+     * 
+     * @return play
+     */
+    public static boolean play() {
+        return play;
     }
 
 }

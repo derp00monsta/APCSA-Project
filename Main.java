@@ -43,13 +43,14 @@ public class Main {
                PetShop.setName(shopName);
 
                // actually start pet simulator
-               while(!Game.isBankrupt()) {
+               while(!Game.isBankrupt() && Game.play()) {
+                    PetShop.resetAdoptions();
+                    System.out.println("It is day " + Game.getDay());
+                    System.out.println("Your current balance is " + Game.getBalance());
                     for (int i = 0; i < 3; i++) {
                          // day starts
-                         System.out.println("It is day " + Game.getDay());
-                         System.out.println("Your current balance is " + Game.getBalance());
                          // first occurrence of a stray
-                              PetShop shop = new PetShop();
+                         PetShop shop = new PetShop();
                          Animal stray = new Animal();
                          System.out.println("Oh look! There's a stray! " + stray.toString());
                          System.out.println("Would you like to adopt it? (y/n)");
@@ -70,18 +71,26 @@ public class Main {
                               }
                          }
                          else if (reply.equalsIgnoreCase("y")) {
-                              System.out.println("Nice! You know have " + Animal.getNumPets() + " pets!");
                               stray.transferTo(shop);
+                              System.out.println("Nice! You know have " + Animal.getNumPets() + " pet(s)!");
                          }
                          else if (reply.equalsIgnoreCase("n")) {
                               System.out.println("Aight...");
                          }
                          stray = null;
-
+                         Animal.adopt();
+                         Animal.adopt();
+                         Animal.adopt();
+                         int num;
                          while (true) {
                               Game.menu();
-                              int num = input.nextInt();
-                              if (num == 1) {
+                              num = input.nextInt();
+                              if (num == 0) {
+                                   i += 100;
+                                   Game.playGame(false);
+                                   break;
+                              }
+                              else if (num == 1) {
                                    Animal.addPet();
                                    Game.addToBalance(-30);
                                    System.out.println(PetShop.getName() + " now has " + Animal.getNumPets() + " pets!");
@@ -112,17 +121,17 @@ public class Main {
 
                               }
                               else if (num == 3) {
-                                   if (Animal.getAdoptionRate() >= 100) {
+                                   if (Game.getBalance() < 100) {
+                                        System.out.println("You do not have enough money");
+
+                                   }
+                                   else if (Animal.getAdoptionRate() >= 80) {
                                         System.out.println("Can not increase adoption rate more than 80%");
 
                                    }
-                                   else if (Game.getBalance() > 80) {
+                                   else if (Game.getBalance() < 80) {
                                         Animal.increaseRate();
                                         System.out.println(PetShop.getName() + "'s' adoption rate is now " + Animal.getAdoptionRate() + "%!");
-
-                                   }
-                                   else if (Game.getBalance() < PetShop.increaseCapacityCost(num)) {
-                                        System.out.println("You do not have enough money");
 
                                    }
                                    System.out.println("Do you wish to return to the menu? (y/n)");
@@ -162,18 +171,17 @@ public class Main {
                          }
                     }
 
+                    Animal.adopt();
                     // end of day sequence
-                    System.out.println("Congratulations! You've made it to the end of Day " + Game.getDay() + ".");
-                    // System.out.println("How many days forward would you like to move forward by? Enter 0 to end the game.");
-                    // int num = input.nextInt();
-                    // if (num > 0) {
-                    //      break;
-                    // }
-                    // else {
-                    //      Game.moveForward(num);
-                    // }
-                    Game.moveForward();
-                    Game.payBills();
+                    if (Game.play()) {
+                         System.out.println("Congratulations! You've made it to the end of Day " + Game.getDay() + ".");
+                         System.out.println(PetShop.petsAdoptedToday() + " pets were adopted today!");
+                         Game.moveForward();
+                         Game.payBills();
+                    }
+                    else if (!Game.play()) {
+                         System.out.println("GAME OVER");
+                    }
                }
 
                if (Game.isBankrupt()) {
@@ -217,3 +225,4 @@ public class Main {
 
      }
 }
+// add exception handling for arithmetic exceptions and to prevent unrealistic statistics
