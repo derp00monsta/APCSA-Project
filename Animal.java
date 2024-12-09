@@ -339,7 +339,10 @@ public class Animal {
     * 
     * @param shop
     */
-    public void transferTo(PetShop shop) {
+    public void transferTo(PetShop shop) throws Exception {
+        if (Animal.getNumPets() >= PetShop.getCapacity()) {
+            throw new Exception("You have already reached capacity! Would you like to increase capacity? (y/n)");
+        }
         this.shop = shop;
         numPets++;
 
@@ -364,7 +367,10 @@ public class Animal {
      * increases adoption rate by 5
      * 
      */
-    public static void increaseRate() {
+    public static void increaseRate() throws Exception {
+        if (Game.getBalance() < 100) {
+            throw new Exception("You do not have enough money.");
+        }
         adoptionRate += 5;
         Game.addToBalance(-100);
 
@@ -380,14 +386,14 @@ public class Animal {
         return adoptionRate;
     }
 
-    /**
-     * changes the value for paying for food
-     * 
-     */
-    public static void feed() {
-        Game.addToBalance(-(getNumPets() * 15));
+    // /**
+    //  * changes the value for paying for food
+    //  * 
+    //  */
+    // public static void feed() {
+    //     Game.addToBalance(-(getNumPets() * 15));
 
-    }
+    // }
 
     /**
     * Adds a pet to the shop

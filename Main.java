@@ -21,23 +21,46 @@ public class Main {
 
           // start pet shop (assign starting balance and name)
           if (answer.equalsIgnoreCase("y")) {
-               System.out.println("What is your players name?");
-               String name = input.nextLine();
+               String name;
+               while (true) {
+                    try {
+                         System.out.println("What is your players name?");
+                         name = input.nextLine();
+                         break;
+                    }
+                    catch (ArithmeticException e) {
+                         System.out.println("Please enter a word.");
+                    }
+               }
                double amount;
                while (true) {
-                    System.out.println("How much money do you start with?");
-                    amount = input.nextDouble();
-                    input.nextLine();
-                    if (amount >= 175000 || amount <= 30000) {
-                         System.out.println("Please pick a reasonable amount (at most $175,000 and at least $30,000)");
+                    try {
+                         System.out.println("How much money do you start with?");
+                         amount = input.nextDouble();
+                         input.nextLine();
+                         if (amount >= 175000 || amount <= 30000) {
+                              System.out.println("Please pick a reasonable amount (at most $175,000 and at least $30,000)");
+                         }
+                         else {
+                              break;
+                         }
                     }
-                    else {
-                         break;
+                    catch (ArithmeticException e) {
+                         System.out.println("Please enter a number between 175,000 and 30,000. (Do not use a comma)");
                     }
                }
                // create the starting settings
-               System.out.println("What would you like to name your first shop?");
-               String shopName = input.nextLine();
+               String shopName;
+               while (true) {
+                    try {
+                         System.out.println("What would you like to name your first shop?");
+                         shopName = input.nextLine();
+                         break;
+                    }
+                    catch (ArithmeticException e) {
+                         System.out.println("Please enter a word.");
+                    }
+               }
                Game.setName(name);
                Game.setBalance(amount);
                PetShop.setName(shopName);
@@ -55,24 +78,27 @@ public class Main {
                          System.out.println("Oh look! There's a stray! " + stray.toString());
                          System.out.println("Would you like to adopt it? (y/n)");
                          String reply = input.nextLine();
-                         if (reply.equalsIgnoreCase("y") && (Animal.getNumPets() >= PetShop.getCapacity())) {
-                              System.out.println("You have already reached capacity! Would you like to increase capacity? (y/n)");
-                              reply = input.nextLine();
-                              if (reply.equalsIgnoreCase("y")) {
-                                   System.out.println("How much would you like to increase capacity? It costs $50 to accommodate another animal. Please enter an integer.");
-                                   int num = input.nextInt();
-                                        if (Game.getBalance() > PetShop.increaseCapacityCost(num)) {
+                         if (reply.equalsIgnoreCase("y")) {
+                              try {
+                                   stray.transferTo(shop);
+                                   System.out.println("Nice! You now have " + Animal.getNumPets() + " pet(s)!");
+
+                              }
+                              catch (Exception e) {
+                                   System.out.println(e.getMessage());
+                                   reply = input.nextLine();
+                                   if (reply.equalsIgnoreCase("y")) {
+                                        try {
+                                             System.out.println("How much would you like to increase capacity? It costs $50 to accommodate another animal. Please enter an integer.");
+                                             int num = input.nextInt();
                                              PetShop.increaseCapacity(num);
                                              System.out.println(PetShop.getName() + " can now fit " + PetShop.getCapacity() + " pets!");
                                         }
-                                        else if (Game.getBalance() < PetShop.increaseCapacityCost(num)) {
-                                             System.out.println("You do not have enough money");
+                                        catch (Exception a) {
+                                             System.out.println(a.getMessage());
                                         }
+                                   }
                               }
-                         }
-                         else if (reply.equalsIgnoreCase("y")) {
-                              stray.transferTo(shop);
-                              System.out.println("Nice! You know have " + Animal.getNumPets() + " pet(s)!");
                          }
                          else if (reply.equalsIgnoreCase("n")) {
                               System.out.println("Aight...");
@@ -102,16 +128,14 @@ public class Main {
 
                               }
                               else if (num == 2) {
-                                   System.out.println("How much would you like to increase capacity? It costs $50 to accommodate another animal. Please enter an integer.");
-                                   num = input.nextInt();
-                                   if (Game.getBalance() > PetShop.increaseCapacityCost(num)) {
+                                   try {
+                                        System.out.println("How much would you like to increase capacity? It costs $50 to accommodate another animal. Please enter an integer.");
+                                        num = input.nextInt();
                                         PetShop.increaseCapacity(num);
                                         System.out.println(PetShop.getName() + " can now fit " + PetShop.getCapacity() + " pets!");
-
                                    }
-                                   else if (Game.getBalance() < PetShop.increaseCapacityCost(num)) {
-                                        System.out.println("You do not have enough money");
-
+                                   catch (Exception a) {
+                                        System.out.println(a.getMessage());
                                    }
                                    System.out.println("Do you wish to return to the menu? (y/n)");
                                    reply = input.nextLine();
@@ -121,18 +145,16 @@ public class Main {
 
                               }
                               else if (num == 3) {
-                                   if (Game.getBalance() < 100) {
-                                        System.out.println("You do not have enough money");
-
-                                   }
-                                   else if (Animal.getAdoptionRate() >= 80) {
+                                   if (Animal.getAdoptionRate() >= 80) {
                                         System.out.println("Can not increase adoption rate more than 80%");
-
                                    }
-                                   else if (Game.getBalance() < 80) {
-                                        Animal.increaseRate();
-                                        System.out.println(PetShop.getName() + "'s' adoption rate is now " + Animal.getAdoptionRate() + "%!");
-
+                                   else {
+                                        try {
+                                             Animal.increaseRate();
+                                        }
+                                        catch (Exception e) {
+                                             System.out.println(e.getMessage());
+                                        }
                                    }
                                    System.out.println("Do you wish to return to the menu? (y/n)");
                                    reply = input.nextLine();
