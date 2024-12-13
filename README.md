@@ -3,7 +3,8 @@
 
 In this __Pet Shop Simulator__, you are an entrepreneur that wants to create a new pet shop. Test how many days your shop can last without going bankrupt!
 
-You can play by interacting with the terminal to make decisions for your pet shop.
+To start the simulator, you can open a GitHub Codespace, then click "run" and interact with the terminal to play! You can also clone the repository and open it in VS Code.
+
 
 ### :P Felis catus
 ```
@@ -18,6 +19,5 @@ You can play by interacting with the terminal to make decisions for your pet sho
 ⠀⠀⠀⠀⠀⠀⠀⠀⠛⠛⠋⠁
 ```
 ReadMe todo:
-    -How to run the project
-    -Any specific requirements or known issues
+    -Any specific requirements or known issues MENU
     -Inputs / Outputs
