@@ -4,7 +4,7 @@ public class Animal {
     private int age;
     private double weight;
     private String color;
-    // private boolean isAlive;
+    // private boolean isAlive; //to be implemented in next version
     // private int health;
     // private double hunger;
     private PetShop shop;
@@ -339,7 +339,10 @@ public class Animal {
     * 
     * @param shop
     */
-    public void transferTo(PetShop shop) {
+    public void transferTo(PetShop shop) throws Exception {
+        if (Animal.getNumPets() >= PetShop.getCapacity()) {
+            throw new Exception("You have already reached capacity! Would you like to increase capacity? (y/n)");
+        }
         this.shop = shop;
         numPets++;
 
@@ -350,11 +353,11 @@ public class Animal {
      * 
      */
     public static void adopt() {
-        int random = (int)(Math.random() * 101 + 1);
+        int random = (int)(Math.random() * 101);
         if (random > adoptionRate && numPets > 0) {
             numPets--;
             petsAdopted++;
-            Game.addToBalance((int)(Math.random() * (64) + 1));
+            Game.addToBalance((int)(Math.random() * (76) + 35));
             PetShop.petAdopted();
         }
 
@@ -364,7 +367,10 @@ public class Animal {
      * increases adoption rate by 5
      * 
      */
-    public static void increaseRate() {
+    public static void increaseRate() throws Exception {
+        if (Game.getBalance() < 100) {
+            throw new Exception("You do not have enough money.");
+        }
         adoptionRate += 5;
         Game.addToBalance(-100);
 
@@ -380,14 +386,14 @@ public class Animal {
         return adoptionRate;
     }
 
-    /**
-     * changes the value for paying for food
-     * 
-     */
-    public static void feed() {
-        Game.addToBalance(-(getNumPets() * 15));
+    // /**
+    //  * changes the value for paying for food
+    //  * 
+    //  */
+    // public static void feed() {
+    //     Game.addToBalance(-(getNumPets() * 15));
 
-    }
+    // }
 
     /**
     * Adds a pet to the shop

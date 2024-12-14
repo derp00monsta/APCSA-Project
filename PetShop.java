@@ -1,36 +1,26 @@
 public class PetShop {
     private static String name;
-    // private int numPets;
     private static int capacity = 10;
     private static int petsAdoptedToday = 0;
-    // private static int totalPets = 0;
-    // private static int numShops = 0;
-
-    /**
-     * Returns the cost of increasing capacity
-     * 
-     * @param newCapacity of pet shop
-     * @return cost of increasing capacity
-     */
-    public static double increaseCapacityCost(int newCapacity) {
-        capacity = newCapacity;
-        return (newCapacity - capacity) * 50;
-
-    }
 
     /**
      * Increases the capacity of the pet shop by the given amount
      * 
      * @param newCapacity of pet shop
      */
-    public static void increaseCapacity(int newCapacity) {
-        capacity = newCapacity;
-        Game.addToBalance((newCapacity - capacity) * 50);
+    public static void increaseCapacity(int num) throws Exception {
+        if (Game.getBalance() < (num * 50)) {
+            throw new Exception("You do not have enough money.");
+        }
+        capacity += num;
+        Game.addToBalance(-(num * 50));
 
     }
 
+    //to be implemented in next version
+
     // /**
-    //  * Closes the shop and deletes the object
+    //  * Closes the shop and deletes the object   
     //  * 
     //  */
     // public void closeShop() {
