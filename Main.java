@@ -15,9 +15,21 @@ public class Main {
           Scanner input = new Scanner(System.in);
 
           // ask if user wants to play
-          System.out.println("Hello! Welcome to the Pet Shop Simulator. Would you like to play?");
-          System.out.println("Y or N");
-          String answer = input.nextLine();
+          String answer;
+          while (true) {
+                    System.out.println("Hello! Welcome to the Pet Shop Simulator. Would you like to play?");
+                    System.out.println("Y or N");
+                    answer = input.nextLine();
+                    
+                    if (answer.equalsIgnoreCase("y") || answer.equalsIgnoreCase("n")) {
+                         break;
+                    }
+                    else {
+                         System.out.println("Please enter Y or N.");
+                         input.nextLine();
+                    }
+
+          }
 
           // start pet shop (assign starting balance and name)
           if (answer.equalsIgnoreCase("y")) {
@@ -28,25 +40,26 @@ public class Main {
                          name = input.nextLine();
                          break;
                     }
-                    catch (ArithmeticException e) {
+                    catch (Exception e) {
                          System.out.println("Please enter a word.");
                     }
                }
                double amount;
                while (true) {
                     try {
-                         System.out.println("How much money do you start with?");
+                         System.out.println("How much money do you start with? (at most $175,000 and at least $30,000)");
                          amount = input.nextDouble();
                          input.nextLine();
-                         if (amount >= 175000 || amount <= 30000) {
+                         if (amount > 175000 || amount <= 30000) {
                               System.out.println("Please pick a reasonable amount (at most $175,000 and at least $30,000)");
                          }
                          else {
                               break;
                          }
                     }
-                    catch (ArithmeticException e) {
+                    catch (Exception e) {
                          System.out.println("Please enter a number between 175,000 and 30,000. (Do not use a comma)");
+                         input.nextLine();
                     }
                }
                // create the starting settings
@@ -57,7 +70,7 @@ public class Main {
                          shopName = input.nextLine();
                          break;
                     }
-                    catch (ArithmeticException e) {
+                    catch (Exception e) {
                          System.out.println("Please enter a word.");
                     }
                }
@@ -192,7 +205,7 @@ public class Main {
                                         }
                                    }
                               }
-                              catch(ArithmeticException r) {
+                              catch(Exception r) {
                                    System.out.println("Please type a number corresponding to the options in the menu.");
                               }
                          }
