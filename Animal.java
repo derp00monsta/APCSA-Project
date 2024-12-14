@@ -4,7 +4,7 @@ public class Animal {
     private int age;
     private double weight;
     private String color;
-    // private boolean isAlive;
+    // private boolean isAlive; //to be implemented in next version
     // private int health;
     // private double hunger;
     private PetShop shop;

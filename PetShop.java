@@ -1,22 +1,7 @@
 public class PetShop {
     private static String name;
-    // private int numPets;
     private static int capacity = 10;
     private static int petsAdoptedToday = 0;
-    // private static int totalPets = 0;
-    // private static int numShops = 0;
-
-    // /**
-    //  * Returns the cost of increasing capacity
-    //  * 
-    //  * @param newCapacity of pet shop
-    //  * @return cost of increasing capacity
-    //  */
-    // public static double increaseCapacityCost(int newCapacity) {
-    //     capacity = newCapacity;
-    //     return (newCapacity - capacity) * 50;
-
-    // }
 
     /**
      * Increases the capacity of the pet shop by the given amount
@@ -32,8 +17,10 @@ public class PetShop {
 
     }
 
+    //to be implemented in next version
+
     // /**
-    //  * Closes the shop and deletes the object
+    //  * Closes the shop and deletes the object   
     //  * 
     //  */
     // public void closeShop() {
