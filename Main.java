@@ -1,10 +1,10 @@
 import java.util.*;
 /** 
 *Pet Shop Simulator
-*Project Description - Short explanation of what your program does
+*Project Description - Pet Shop simulator that allows the user to create and run a pet shop
 *@author Hadizah Coulibaly
 *@author ChrisTina Hague
-*@version - the date the program was last updated
+*@version - 13 DEC 2024
 */
 
 
